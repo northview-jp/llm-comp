@@ -20,7 +20,7 @@
     "start": "node dist/cli.js",
     "lint": "tsc -p tsconfig.json --noEmit",
     "prepare": "npm run build",
-    "test": "npm run build && node --test 'test/*.test.cjs' 'test/**/*.test.cjs'"
+    "test": "npm run build && node --test test/*.test.cjs test/**/*.test.cjs"
   },
   "dependencies": {
     "yaml": "^2.8.2"
