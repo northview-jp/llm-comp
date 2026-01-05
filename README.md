@@ -7,31 +7,7 @@ Compare LLM responses side-by-side in your terminal.
 
 ![Screenshot](img/ss.png)
 
-```
-◆ LLM Comparison ◆
-Select models to compare responses
-────────────────────────────────────
-
-❯ ▾ ◈ OpenAI  2/9
-   ›  ☑  GPT-5.2 Pro   ★
-      ☑  GPT-5.2       ★
-      ☐  GPT-5.1       ★
-      ☐  GPT-5         ★
-      ☐  GPT-5 Mini
-      ☐  GPT-5 Nano    ⚡
-
-  ▾ ◈ Claude  1/6
-      ☑  Claude Opus 4.5    ★
-      ☐  Claude Sonnet 4.5
-      ☐  Claude Opus 4.1
-
-  ▸ ◈ Gemini  0/9
-
-────────────────────────────────────
-✔ 3 models selected
-
-↑↓ move   SPACE  select   ENTER  confirm   q quit
-```
+![Model Selection](img/models.png)
 
 ## Features
 
