@@ -16,7 +16,7 @@ export {
   createTimeoutError,
 } from "./provider";
 
-export type { ProviderRunConfig, AppConfig } from "./config";
+export type { ProviderRunConfig, AppConfig, ReasoningEffort } from "./config";
 
 export type { ProviderState, TabInfo, ProviderGroup } from "./ui";
 

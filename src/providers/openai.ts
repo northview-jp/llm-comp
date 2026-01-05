@@ -1,4 +1,4 @@
-import { ProviderResponse, ProviderRunConfig } from "../types";
+import { ProviderResponse, ProviderRunConfig, ReasoningEffort } from "../types";
 import {
   isObject,
   OpenAIResponse,
@@ -8,11 +8,15 @@ import {
 } from "../types/api-responses";
 import { ProviderSpec, runWithFallback } from "./base";
 
-function supportsTemperature(model: string): boolean {
-  // GPT-5 Pro models don't support temperature
+function supportsTemperature(model: string, reasoningEffort?: ReasoningEffort): boolean {
+  // GPT-5 Pro models don't support temperature (effort cannot be set to "none")
   if (/^gpt-5(\.\d+)?-pro$/.test(model)) return false;
-  // GPT-5 Mini/Nano don't support temperature
-  if (model === "gpt-5-mini" || model === "gpt-5-nano") return false;
+  // GPT-5 base/Mini/Nano don't support temperature
+  if (model === "gpt-5" || model === "gpt-5-mini" || model === "gpt-5-nano") return false;
+  // GPT-5.2/5.1 only support temperature when reasoning.effort="none"
+  if (/^gpt-5\.\d+$/.test(model)) {
+    return reasoningEffort === "none";
+  }
   return true;
 }
 
@@ -75,7 +79,11 @@ const openaiSpec: ProviderSpec = {
       instructions: cfg.system,
       store: false,
     };
-    if (typeof cfg.temperature === "number" && supportsTemperature(model)) {
+    // GPT-5.2/5.1 support configurable reasoning.effort
+    if (/^gpt-5\.\d+$/.test(model) && cfg.reasoning_effort) {
+      body.reasoning = { effort: cfg.reasoning_effort };
+    }
+    if (typeof cfg.temperature === "number" && supportsTemperature(model, cfg.reasoning_effort)) {
       body.temperature = cfg.temperature;
     }
     return body;

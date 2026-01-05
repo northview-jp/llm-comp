@@ -1,5 +1,5 @@
 # llm-comp.yaml
-# このファイルを編集して挙動をカスタマイズします。
+# Edit this file to customize the behavior.
 
 app:
   title: "llm-comp"

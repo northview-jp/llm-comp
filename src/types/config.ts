@@ -1,5 +1,7 @@
 import { ProviderId } from "./provider";
 
+export type ReasoningEffort = "none" | "low" | "medium" | "high" | "xhigh";
+
 export interface ProviderRunConfig {
   enabled: boolean;
   model: string | string[];
@@ -7,6 +9,7 @@ export interface ProviderRunConfig {
   max_output_tokens?: number;
   system?: string;
   timeout_ms?: number;
+  reasoning_effort?: ReasoningEffort;
 }
 
 export interface AppConfig {

@@ -13,7 +13,7 @@ function generateYamlTemplate(): string {
   const geminiModels = JSON.stringify(getDefaultModels("gemini"));
 
   return `# llm-comp.yaml
-# このファイルを編集して挙動をカスタマイズします。
+# Edit this file to customize the behavior.
 
 app:
   title: "llm-comp"
@@ -24,7 +24,7 @@ app:
 providers:
   openai:
     enabled: true
-    # モデルは配列指定も可能（先頭から順に試行します）
+    # Models can be specified as an array (tried in order from first to last)
     model: ${openaiModels}
     temperature: ${DEFAULT_TEMPERATURE}
     max_output_tokens: ${DEFAULT_MAX_OUTPUT_TOKENS}

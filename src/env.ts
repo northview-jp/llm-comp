@@ -2,12 +2,12 @@ import fs from "fs";
 import path from "path";
 
 /**
- * Minimal .env loader (dotenv の代替). 依存を増やさないために自前実装。
+ * Minimal .env loader (alternative to dotenv). Self-implemented to avoid extra dependencies.
  *
- * - 先頭/末尾の空白はトリム
- * - KEY=VALUE 形式
- * - VALUE がダブル/シングルクオートに囲まれていれば外す
- * - 既に process.env にあるキーは上書きしない（=環境変数を優先）
+ * - Trims leading/trailing whitespace
+ * - Parses KEY=VALUE format
+ * - Strips surrounding double/single quotes from VALUE
+ * - Does not overwrite existing process.env keys (environment variables take precedence)
  */
 export function loadDotEnv(cwd: string): void {
   const envPath = path.join(cwd, ".env");
