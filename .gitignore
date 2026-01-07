@@ -35,3 +35,6 @@ coverage/
 .latest-results.yaml
 .llm-comp-results.yaml
 llm-comp.yaml
+
+# Planning docs
+plans/

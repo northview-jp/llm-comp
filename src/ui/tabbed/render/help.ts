@@ -5,8 +5,8 @@ import {
   rainbowText,
   UI_COLORS,
   UI_BG_COLORS,
-} from "../../../utils/term";
-import { truncate } from "../../../utils/text";
+} from "../../../utils/term.js";
+import { truncate } from "../../../utils/text.js";
 
 function helpBoxLine(content: string, innerWidth: number, leftColor: string, rightColor: string): string {
   const contentLen = visualLength(content);

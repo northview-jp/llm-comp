@@ -1,16 +1,20 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "CommonJS",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "outDir": "dist",
     "rootDir": "src",
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "src/**/*.tsx"
   ]
 }

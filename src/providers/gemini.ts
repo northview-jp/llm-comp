@@ -1,12 +1,12 @@
-import { ProviderResponse, ProviderRunConfig } from "../types";
-import { DEFAULT_MAX_OUTPUT_TOKENS } from "../constants";
+import { ProviderResponse, ProviderRunConfig } from "../types/index.js";
+import { DEFAULT_MAX_OUTPUT_TOKENS } from "../constants.js";
 import {
   isObject,
   GeminiResponse,
   GeminiCandidate,
   GeminiPart,
-} from "../types/api-responses";
-import { ProviderSpec, runWithFallback } from "./base";
+} from "../types/api-responses.js";
+import { ProviderSpec, runWithFallback } from "./base.js";
 
 export function extractText(payload: unknown): string {
   if (!isObject(payload)) return "";

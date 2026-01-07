@@ -9,19 +9,19 @@ import {
   RAINBOW_COLORS,
   UI_COLORS,
   UI_BG_COLORS,
-} from "../../utils/term";
-import { truncate, wrapText } from "../../utils/text";
-import { ProviderId, ProviderStatus, ProviderState, TabInfo, ProviderGroup } from "../../types";
+} from "../../utils/term.js";
+import { truncate, wrapText } from "../../utils/text.js";
+import { ProviderId, ProviderStatus, ProviderState, TabInfo, ProviderGroup } from "../../types/index.js";
 import {
   DEFAULT_TERMINAL_WIDTH,
   DEFAULT_TERMINAL_HEIGHT,
   SPINNER_INTERVAL_MS,
-} from "../../constants";
-import { RenderContext, StatusCounts, ScrollInfo } from "./render/types";
+} from "../../constants.js";
+import { RenderContext, StatusCounts, ScrollInfo } from "./render/types.js";
 
 export { SPINNER_INTERVAL_MS };
 export { RenderContext, StatusCounts, ScrollInfo };
-export { renderHelpScreen } from "./render/help";
+export { renderHelpScreen } from "./render/help.js";
 
 function getProvider(providerId: ProviderId) {
   return PROVIDERS[providerId] || { name: providerId, color: ANSI.fgWhite, icon: "◈" };

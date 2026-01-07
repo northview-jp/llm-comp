@@ -1,4 +1,4 @@
-import { ProviderId } from "./provider";
+import { ProviderId } from "./provider.js";
 
 export type ReasoningEffort = "none" | "low" | "medium" | "high" | "xhigh";
 

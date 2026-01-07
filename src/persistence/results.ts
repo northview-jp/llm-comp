@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import yaml from "yaml";
-import { ProviderState } from "../types";
+import { ProviderState } from "../types/index.js";
 
 interface ResultEntry {
   provider: string;

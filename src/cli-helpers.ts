@@ -1,4 +1,4 @@
-import { ENV_SKIP_DOTENV } from "./constants";
+import { ENV_SKIP_DOTENV } from "./constants.js";
 
 export function shouldSkipDotEnv(): boolean {
   const raw = process.env[ENV_SKIP_DOTENV];

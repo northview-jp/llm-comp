@@ -1,4 +1,4 @@
-import { ProviderId } from "../types";
+import { ProviderId } from "../types/index.js";
 
 export interface ModelInfo {
   readonly id: string;

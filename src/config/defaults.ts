@@ -1,10 +1,10 @@
-import { AppConfig } from "../types";
+import { AppConfig } from "../types/index.js";
 import {
   DEFAULT_TIMEOUT_MS,
   DEFAULT_TEMPERATURE,
   DEFAULT_MAX_OUTPUT_TOKENS,
-} from "../constants";
-import { getDefaultModels, getProviderDisplayName } from "../catalog";
+} from "../constants.js";
+import { getDefaultModels, getProviderDisplayName } from "../catalog/index.js";
 
 export const DEFAULT_CONFIG: AppConfig = {
   app: {

@@ -1,4 +1,4 @@
-import { codePointWidth, stringWidth } from "./width";
+import { codePointWidth, stringWidth } from "./width.js";
 
 function sliceByWidth(str: string, maxWidth: number): [string, string] {
   let width = 0;

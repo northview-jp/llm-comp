@@ -1,4 +1,4 @@
-import { ProviderResult, ProviderError } from "../types";
+import { ProviderResult, ProviderError } from "../types/index.js";
 
 export function printJson(results: Array<ProviderResult | ProviderError>): void {
   const out = results.map((r) => {

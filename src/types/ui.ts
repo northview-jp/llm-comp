@@ -1,4 +1,4 @@
-import { ProviderId, TokenUsage } from "./provider";
+import { ProviderId, TokenUsage } from "./provider.js";
 
 export interface TabInfo {
   readonly id: string;

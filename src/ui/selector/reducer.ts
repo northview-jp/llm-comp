@@ -1,4 +1,4 @@
-import { SelectionState } from "./types";
+import { SelectionState } from "./types.js";
 
 export type SelectionAction =
   | { type: "MOVE_UP" }

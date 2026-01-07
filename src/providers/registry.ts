@@ -3,11 +3,11 @@ import {
   ProviderResponse,
   ProviderRunConfig,
   createDisabledError,
-} from "../types";
-import { PROVIDER_IDS } from "../constants";
-import { runOpenAI } from "./openai";
-import { runClaude } from "./claude";
-import { runGemini } from "./gemini";
+} from "../types/index.js";
+import { PROVIDER_IDS } from "../constants.js";
+import { runOpenAI } from "./openai.js";
+import { runClaude } from "./claude.js";
+import { runGemini } from "./gemini.js";
 
 type ProviderRunner = (
   prompt: string,

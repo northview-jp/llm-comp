@@ -6,16 +6,16 @@ import {
   TokenUsage,
   createApiKeyMissingError,
   createTimeoutError,
-} from "../types";
+} from "../types/index.js";
 import {
   isObject,
   OpenAIUsage,
   ClaudeUsage,
   GeminiUsageMetadata,
   ErrorResponse,
-} from "../types/api-responses";
-import { HttpResult, postJson } from "./http";
-import { MODEL_ERROR_PATTERNS, MODEL_FALLBACK_STATUS_CODES, DEFAULT_TIMEOUT_MS } from "../constants";
+} from "../types/api-responses.js";
+import { HttpResult, postJson } from "./http.js";
+import { MODEL_ERROR_PATTERNS, MODEL_FALLBACK_STATUS_CODES, DEFAULT_TIMEOUT_MS } from "../constants.js";
 
 export function extractTokens(provider: ProviderId, raw: unknown): TokenUsage | undefined {
   if (!isObject(raw)) return undefined;
@@ -95,7 +95,7 @@ export function createSuccess(
   text: string,
   raw: unknown,
   elapsed_ms: number
-): import("../types").ProviderSuccess {
+): import("../types/index.js").ProviderSuccess {
   const tokens = extractTokens(provider, raw);
   return {
     kind: "success",
@@ -115,6 +115,7 @@ export interface ProviderSpec {
   getHeaders: (apiKey: string) => Record<string, string>;
   buildBody: (model: string, prompt: string, cfg: ProviderRunConfig) => Record<string, unknown>;
   extractText: (payload: unknown) => string;
+  postJson?: typeof postJson;
 }
 
 export async function runWithFallback(
@@ -132,6 +133,7 @@ export async function runWithFallback(
   const models = asModelList(cfg.model);
   let lastErr: ProviderResponse | null = null;
   const timeoutMs = cfg.timeout_ms ?? DEFAULT_TIMEOUT_MS;
+  const post = spec.postJson ?? postJson;
 
   for (let i = 0; i < models.length; i++) {
     const model = models[i];
@@ -139,7 +141,7 @@ export async function runWithFallback(
     const headers = spec.getHeaders(apiKey);
     const body = spec.buildBody(model, prompt, cfg);
 
-    const res = await postJson<unknown>(url, headers, body, timeoutMs);
+    const res = await post<unknown>(url, headers, body, timeoutMs);
     const elapsed = Date.now() - started;
 
     if (res.isTimeout) {

@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { ProviderId } from "../types";
+import { ProviderId } from "../types/index.js";
 
 interface SavedSelection {
   selectedModels: { providerId: ProviderId; modelId: string }[];

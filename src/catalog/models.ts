@@ -1,5 +1,5 @@
-import { ProviderCatalog, ModelInfo } from "./types";
-import { ProviderId } from "../types";
+import { ProviderCatalog, ModelInfo } from "./types.js";
+import { ProviderId } from "../types/index.js";
 
 export const MODEL_CATALOG: readonly ProviderCatalog[] = [
   {

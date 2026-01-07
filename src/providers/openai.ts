@@ -1,12 +1,12 @@
-import { ProviderResponse, ProviderRunConfig, ReasoningEffort } from "../types";
+import { ProviderResponse, ProviderRunConfig, ReasoningEffort } from "../types/index.js";
 import {
   isObject,
   OpenAIResponse,
   OpenAIOutputItem,
   OpenAITextContent,
   OpenAIChoice,
-} from "../types/api-responses";
-import { ProviderSpec, runWithFallback } from "./base";
+} from "../types/api-responses.js";
+import { ProviderSpec, runWithFallback } from "./base.js";
 
 function supportsTemperature(model: string, reasoningEffort?: ReasoningEffort): boolean {
   // GPT-5 Pro models don't support temperature (effort cannot be set to "none")
