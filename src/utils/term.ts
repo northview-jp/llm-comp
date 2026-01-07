@@ -1,4 +1,4 @@
-import { stringWidth, stripAnsi as stripAnsiWidth } from "./width";
+import { stringWidth, stripAnsi as stripAnsiWidth } from "./width.js";
 
 export const ANSI = {
   // Screen control

@@ -1,4 +1,4 @@
-import { ProviderState, ProviderGroup } from "../../../types";
+import { ProviderState, ProviderGroup } from "../../../types/index.js";
 
 export interface RenderContext {
   readonly title: string;

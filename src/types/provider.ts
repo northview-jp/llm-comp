@@ -1,4 +1,4 @@
-import { PROVIDER_IDS } from "../constants";
+import { PROVIDER_IDS } from "../constants.js";
 
 export type ProviderId = (typeof PROVIDER_IDS)[number];
 

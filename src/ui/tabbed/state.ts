@@ -1,6 +1,6 @@
-import { ProviderId, ProviderState, ProviderResponse, isProviderSuccess, TabInfo, ProviderGroup } from "../../types";
-import { PROVIDERS } from "../../utils/term";
-import { SelectedModel } from "../selector/types";
+import { ProviderId, ProviderState, ProviderResponse, isProviderSuccess, TabInfo, ProviderGroup } from "../../types/index.js";
+import { PROVIDERS } from "../../utils/term.js";
+import { SelectedModel } from "../selector/types.js";
 
 function createTabId(providerId: ProviderId, modelId: string): string {
   return `${providerId}:${modelId}`;

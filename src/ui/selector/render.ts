@@ -13,10 +13,10 @@ import {
   gradientText,
   UI_COLORS,
   UI_BG_COLORS,
-} from "../../utils/term";
-import { truncate } from "../../utils/text";
-import { SelectionState, SelectedModel, ProviderSelectionState } from "./types";
-import { ProviderId } from "../../types";
+} from "../../utils/term.js";
+import { truncate } from "../../utils/text.js";
+import { SelectionState, SelectedModel, ProviderSelectionState } from "./types.js";
+import { ProviderId } from "../../types/index.js";
 
 // Tier badge with vibrant styling
 function tierBadge(tier: string): string {

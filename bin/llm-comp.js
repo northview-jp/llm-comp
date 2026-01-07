@@ -1,12 +1,6 @@
 #!/usr/bin/env node
-'use strict';
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
 
-const path = require('path');
-
-function main() {
-  const cliPath = path.join(__dirname, '..', 'dist', 'cli.js');
-  // eslint-disable-next-line import/no-dynamic-require
-  require(cliPath);
-}
-
-main();
+const __dirname = dirname(fileURLToPath(import.meta.url));
+await import(join(__dirname, "..", "dist", "cli.js"));

@@ -2,15 +2,15 @@ import fs from "fs";
 import os from "os";
 import path from "path";
 import YAML from "yaml";
-import { AppConfig, ProviderRunConfig } from "../types";
+import { AppConfig, ProviderRunConfig } from "../types/index.js";
 import {
   DEFAULT_TIMEOUT_MS,
   DEFAULT_TEMPERATURE,
   DEFAULT_MAX_OUTPUT_TOKENS,
   ENV_CONFIG_PATH,
-} from "../constants";
-import { clone, deepMerge } from "./merge";
-import { DEFAULT_CONFIG } from "./defaults";
+} from "../constants.js";
+import { clone, deepMerge } from "./merge.js";
+import { DEFAULT_CONFIG } from "./defaults.js";
 
 export interface ResolvedConfig {
   config: AppConfig;

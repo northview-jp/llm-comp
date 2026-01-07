@@ -1,11 +1,11 @@
 import fs from "fs";
 import path from "path";
-import { MODEL_CATALOG, getDefaultModels, getProviderDisplayName } from "./catalog";
+import { MODEL_CATALOG, getDefaultModels, getProviderDisplayName } from "./catalog/index.js";
 import {
   DEFAULT_TIMEOUT_MS,
   DEFAULT_TEMPERATURE,
   DEFAULT_MAX_OUTPUT_TOKENS,
-} from "./constants";
+} from "./constants.js";
 
 function generateYamlTemplate(): string {
   const openaiModels = JSON.stringify(getDefaultModels("openai"));

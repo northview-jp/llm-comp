@@ -1,6 +1,6 @@
-import { ProviderResponse, ProviderRunConfig } from "../types";
-import { isObject, ClaudeResponse, ClaudeContentBlock } from "../types/api-responses";
-import { ProviderSpec, runWithFallback } from "./base";
+import { ProviderResponse, ProviderRunConfig } from "../types/index.js";
+import { isObject, ClaudeResponse, ClaudeContentBlock } from "../types/api-responses.js";
+import { ProviderSpec, runWithFallback } from "./base.js";
 
 export function extractText(payload: unknown): string {
   if (!isObject(payload)) return "";

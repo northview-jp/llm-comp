@@ -1,8 +1,8 @@
-import { Key } from "../../utils/term";
-import { clamp } from "../../utils/text";
-import { TabbedStateData, getCurrentProviderTabs } from "./state";
-import { getContentLines, getTerminalDimensions } from "./render";
-import { ClipboardService, IClipboardService } from "./clipboard";
+import { Key } from "../../utils/term.js";
+import { clamp } from "../../utils/text.js";
+import { TabbedStateData, getCurrentProviderTabs } from "./state.js";
+import { getContentLines, getTerminalDimensions } from "./render.js";
+import { ClipboardService, IClipboardService } from "./clipboard.js";
 
 export type ControllerAction =
   | { type: "quit" }

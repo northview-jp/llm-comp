@@ -1,15 +1,15 @@
-import { ANSI, decodeKey, Key } from "../../utils/term";
-import { ProviderCatalog } from "../../catalog";
+import { ANSI, decodeKey, Key } from "../../utils/term.js";
+import { ProviderCatalog } from "../../catalog/index.js";
 import {
   SelectionState,
   SelectionResult,
   SelectedModel,
   ProviderSelectionState,
-} from "./types";
-import { renderSelectionScreen, renderConfirmScreen } from "./render";
-import { reduceSelectionState, SelectionAction } from "./reducer";
+} from "./types.js";
+import { renderSelectionScreen, renderConfirmScreen } from "./render.js";
+import { reduceSelectionState, SelectionAction } from "./reducer.js";
 
-export type { SelectionResult, SelectedModel } from "./types";
+export type { SelectionResult, SelectedModel } from "./types.js";
 
 function getTerminalDimensions(): { width: number; height: number } {
   return {

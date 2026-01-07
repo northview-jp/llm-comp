@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Compare LLM responses (OpenAI / Claude / Gemini) in a tabbed terminal UI",
   "license": "MIT",
-  "type": "commonjs",
+  "type": "module",
   "bin": {
     "llm-comp": "bin/llm-comp.js"
   },
@@ -20,13 +20,16 @@
     "start": "node dist/cli.js",
     "lint": "tsc -p tsconfig.json --noEmit",
     "prepare": "npm run build",
-    "test": "npm run build && node --test test/*.test.cjs test/**/*.test.cjs"
+    "test": "npm run build && node --test test/*.test.js test/**/*.test.js"
   },
   "dependencies": {
+    "ink": "^5.0.1",
+    "react": "^18.3.1",
     "yaml": "^2.8.2"
   },
   "devDependencies": {
     "@types/node": "^25.0.3",
+    "@types/react": "^19.2.7",
     "typescript": "^5.9.3"
   },
   "engines": {

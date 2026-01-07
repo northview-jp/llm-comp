@@ -17,7 +17,8 @@ Compare LLM responses side-by-side in your terminal.
 - **Selection memory** - Model selections saved for next time
 - **Results export** - Responses saved to YAML file
 - **Copy to clipboard** - Press `c` to copy current response
-- **Minimal dependencies** - Only `yaml` package required
+- **Terminal resize support** - UI automatically adapts to terminal size
+- **Minimal dependencies** - Uses `ink` (React-based TUI) and `yaml`
 
 ## Quick Start
 
@@ -205,6 +206,7 @@ Both files are gitignored.
 | Model not found | Add fallback models: `model: ["preferred", "fallback"]` |
 | Shift+Tab not working | Use `←` instead |
 | Timeout | Increase `app.timeout_ms` in config |
+| "Terminal too small" | Resize terminal to at least 60x20 |
 
 ## Contributing
 

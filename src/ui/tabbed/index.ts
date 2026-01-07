@@ -1,21 +1,21 @@
-import { ANSI, decodeKey } from "../../utils/term";
-import { ProviderState, ProviderResponse, TabInfo } from "../../types";
-import { SPINNER_INTERVAL_MS } from "../../constants";
+import { ANSI, decodeKey } from "../../utils/term.js";
+import { ProviderState, ProviderResponse, TabInfo } from "../../types/index.js";
+import { SPINNER_INTERVAL_MS } from "../../constants.js";
 import {
   RenderContext,
   composeFinalOutput,
   getTerminalDimensions,
   renderHelpScreen,
-} from "./render";
-import { SelectedModel } from "../selector/types";
+} from "./render.js";
+import { SelectedModel } from "../selector/types.js";
 import {
   TabbedStateData,
   createInitialState,
   isAllSettled,
   updateFromResult,
   updateFromError,
-} from "./state";
-import { TabbedController, ControllerAction } from "./controller";
+} from "./state.js";
+import { TabbedController, ControllerAction } from "./controller.js";
 
 export type { TabInfo };
 
@@ -123,7 +123,7 @@ export class TabbedUI {
     return isAllSettled(this.state);
   }
 
-  private onKey(key: import("../../utils/term").Key): void {
+  private onKey(key: import("../../utils/term.js").Key): void {
     const action = this.controller.handleKey(this.state, key);
     this.handleAction(action);
   }
