@@ -23,8 +23,8 @@
     "test": "npm run build && node --test test/*.test.js test/**/*.test.js"
   },
   "dependencies": {
-    "ink": "^5.0.1",
-    "react": "^19.2.3",
+    "ink": "^6.6.0",
+    "react": "^19.0.0",
     "yaml": "^2.8.2"
   },
   "devDependencies": {
