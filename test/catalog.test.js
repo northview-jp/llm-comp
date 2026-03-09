@@ -42,26 +42,38 @@ describe("catalog", () => {
         );
       }
     });
+
+    it("includes the latest flagship models from the catalog doc", () => {
+      const openai = MODEL_CATALOG.find((p) => p.providerId === "openai");
+      const claude = MODEL_CATALOG.find((p) => p.providerId === "claude");
+      const gemini = MODEL_CATALOG.find((p) => p.providerId === "gemini");
+
+      assert.ok(openai?.models.some((m) => m.id === "gpt-5.4"));
+      assert.ok(openai?.models.some((m) => m.id === "gpt-5.4-pro"));
+      assert.ok(claude?.models.some((m) => m.id === "claude-opus-4-6"));
+      assert.ok(claude?.models.some((m) => m.id === "claude-sonnet-4-6"));
+      assert.ok(gemini?.models.some((m) => m.id === "gemini-3.1-pro-preview"));
+      assert.ok(gemini?.models.some((m) => m.id === "gemini-3.1-flash-lite-preview"));
+    });
   });
 
   describe("getDefaultModels", () => {
-    it("returns fast tier models for openai", () => {
-      const models = getDefaultModels("openai");
-      assert.ok(Array.isArray(models));
-      assert.ok(models.length > 0);
-      assert.ok(models.includes("gpt-5-nano") || models.includes("gpt-4.1-nano"));
+    it("returns recommended defaults for openai", () => {
+      assert.deepStrictEqual(getDefaultModels("openai"), ["gpt-5-mini", "gpt-5-nano"]);
     });
 
-    it("returns fast tier models for claude", () => {
-      const models = getDefaultModels("claude");
-      assert.ok(Array.isArray(models));
-      assert.ok(models.length > 0);
+    it("returns recommended defaults for claude", () => {
+      assert.deepStrictEqual(getDefaultModels("claude"), [
+        "claude-haiku-4-5-20251001",
+        "claude-sonnet-4-6",
+      ]);
     });
 
-    it("returns fast tier models for gemini", () => {
-      const models = getDefaultModels("gemini");
-      assert.ok(Array.isArray(models));
-      assert.ok(models.length > 0);
+    it("returns recommended defaults for gemini", () => {
+      assert.deepStrictEqual(getDefaultModels("gemini"), [
+        "gemini-3.1-flash-lite-preview",
+        "gemini-3-flash-preview",
+      ]);
     });
 
     it("returns empty array for unknown provider", () => {

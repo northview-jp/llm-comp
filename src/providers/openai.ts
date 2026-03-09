@@ -8,13 +8,34 @@ import {
 } from "../types/api-responses.js";
 import { ProviderSpec, runWithFallback } from "./base.js";
 
+function isGpt5ProModel(model: string): boolean {
+  return /^gpt-5(\.\d+)?-pro$/.test(model);
+}
+
+function isNumberedGpt5Model(model: string): boolean {
+  return /^gpt-5\.\d+$/.test(model);
+}
+
+function getReasoningEffort(
+  model: string,
+  reasoningEffort?: ReasoningEffort
+): ReasoningEffort | undefined {
+  if (!reasoningEffort) return undefined;
+  if (isGpt5ProModel(model)) {
+    return ["medium", "high", "xhigh"].includes(reasoningEffort)
+      ? reasoningEffort
+      : undefined;
+  }
+  return isNumberedGpt5Model(model) ? reasoningEffort : undefined;
+}
+
 function supportsTemperature(model: string, reasoningEffort?: ReasoningEffort): boolean {
   // GPT-5 Pro models don't support temperature (effort cannot be set to "none")
-  if (/^gpt-5(\.\d+)?-pro$/.test(model)) return false;
+  if (isGpt5ProModel(model)) return false;
   // GPT-5 base/Mini/Nano don't support temperature
   if (model === "gpt-5" || model === "gpt-5-mini" || model === "gpt-5-nano") return false;
-  // GPT-5.2/5.1 only support temperature when reasoning.effort="none"
-  if (/^gpt-5\.\d+$/.test(model)) {
+  // Numbered GPT-5 variants only support temperature when reasoning.effort="none"
+  if (isNumberedGpt5Model(model)) {
     return reasoningEffort === "none";
   }
   return true;
@@ -72,6 +93,7 @@ const openaiSpec: ProviderSpec = {
     const maxTokens = isReasoningModel(model)
       ? Math.max(baseTokens * 4, 4000)
       : baseTokens;
+    const reasoningEffort = getReasoningEffort(model, cfg.reasoning_effort);
     const body: Record<string, unknown> = {
       model,
       input: prompt,
@@ -79,9 +101,9 @@ const openaiSpec: ProviderSpec = {
       instructions: cfg.system,
       store: false,
     };
-    // GPT-5.2/5.1 support configurable reasoning.effort
-    if (/^gpt-5\.\d+$/.test(model) && cfg.reasoning_effort) {
-      body.reasoning = { effort: cfg.reasoning_effort };
+    // GPT-5.x models expose reasoning.effort with model-specific allowed values.
+    if (reasoningEffort) {
+      body.reasoning = { effort: reasoningEffort };
     }
     if (typeof cfg.temperature === "number" && supportsTemperature(model, cfg.reasoning_effort)) {
       body.temperature = cfg.temperature;

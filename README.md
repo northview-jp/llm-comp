@@ -128,19 +128,19 @@ app:
 providers:
   openai:
     enabled: true
-    model: ["gpt-5-nano", "gpt-4.1-nano"]  # Fallback order
+    model: ["gpt-5-mini", "gpt-5-nano"]  # Fallback order
     temperature: 0.2
     max_output_tokens: 800
 
   claude:
     enabled: true
-    model: ["claude-haiku-4-5-20251001"]
+    model: ["claude-haiku-4-5-20251001", "claude-sonnet-4-6"]
     temperature: 0.2
     max_output_tokens: 800
 
   gemini:
     enabled: true
-    model: ["gemini-2.5-flash-lite"]
+    model: ["gemini-3.1-flash-lite-preview", "gemini-3-flash-preview"]
     temperature: 0.2
     max_output_tokens: 800
 
@@ -156,29 +156,26 @@ See [MODEL_CATALOG.md](MODEL_CATALOG.md) for the full list.
 
 | Model | Tier | Description |
 |-------|------|-------------|
-| `gpt-5.2-pro` | Flagship | Most capable |
-| `gpt-5.2` | Flagship | Latest flagship |
-| `gpt-5-mini` | Standard | Balanced |
+| `gpt-5.4-pro` | Flagship | Most capable |
+| `gpt-5.4` | Flagship | Latest flagship |
+| `gpt-5-mini` | Standard | Balanced fallback |
 | `gpt-5-nano` | Fast | Cost-efficient |
-| `gpt-4.1` | Standard | Reliable |
-| `gpt-4.1-nano` | Fast | Fastest |
 
 ### Claude
 
 | Model | Tier | Description |
 |-------|------|-------------|
-| `claude-opus-4-5-20251101` | Flagship | Most capable |
-| `claude-sonnet-4-5-20250929` | Standard | Balanced |
+| `claude-opus-4-6` | Flagship | Most capable |
+| `claude-sonnet-4-6` | Standard | Balanced |
 | `claude-haiku-4-5-20251001` | Fast | Fastest |
 
 ### Gemini
 
 | Model | Tier | Description |
 |-------|------|-------------|
-| `gemini-2.5-pro` | Flagship | Most capable |
-| `gemini-2.5-flash` | Standard | Balanced |
-| `gemini-2.0-flash` | Fast | Fast multimodal |
-| `gemini-2.0-flash-lite` | Fast | Cost-efficient |
+| `gemini-3.1-pro-preview` | Flagship | Most capable |
+| `gemini-3-flash-preview` | Standard | Balanced |
+| `gemini-3.1-flash-lite-preview` | Fast | Lowest-cost default |
 
 ## Persistence
 
