@@ -223,7 +223,7 @@ test("saveResults handles model ID with colons", () => {
   withTempDir((dir) => {
     const states = new Map([
       [
-        "claude:claude-opus-4-5-20251101",
+        "claude:claude-opus-4-6",
         {
           status: "done",
           label: "Claude",
@@ -241,7 +241,7 @@ test("saveResults handles model ID with colons", () => {
 
     const result = parsed.results[0];
     assert.equal(result.provider, "claude");
-    assert.equal(result.model, "claude-opus-4-5-20251101");
+    assert.equal(result.model, "claude-opus-4-6");
   });
 });
 

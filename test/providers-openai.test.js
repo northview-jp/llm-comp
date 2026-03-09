@@ -1,8 +1,22 @@
-import { describe, it } from "node:test";
+import { describe, it, beforeEach, afterEach } from "node:test";
 import assert from "node:assert";
-import { extractText } from "../dist/providers/openai.js";
+import { extractText, runOpenAI } from "../dist/providers/openai.js";
 
-describe("OpenAI extractText", () => {
+let originalFetch;
+let originalEnv;
+
+beforeEach(() => {
+  originalFetch = globalThis.fetch;
+  originalEnv = { ...process.env };
+});
+
+afterEach(() => {
+  globalThis.fetch = originalFetch;
+  process.env = originalEnv;
+});
+
+describe("OpenAI", () => {
+  describe("extractText", () => {
   describe("output_text field", () => {
     it("extracts text from output_text string", () => {
       const payload = { output_text: "Hello world" };
@@ -146,6 +160,79 @@ describe("OpenAI extractText", () => {
         output: [null, undefined, { type: "message", content: [{ text: "Valid" }] }],
       };
       assert.strictEqual(extractText(payload), "Valid");
+    });
+  });
+  });
+
+  describe("request body", () => {
+    it("sends reasoning.effort for gpt-5.4-pro and omits temperature", async () => {
+      let seenBody;
+      process.env.OPENAI_API_KEY = "test-key";
+      globalThis.fetch = async (_url, init) => {
+        seenBody = JSON.parse(init.body);
+        return {
+          ok: true,
+          status: 200,
+          text: async () => JSON.stringify({ output_text: "ok" }),
+        };
+      };
+
+      const result = await runOpenAI("hello", {
+        model: "gpt-5.4-pro",
+        reasoning_effort: "high",
+        temperature: 0.2,
+        max_output_tokens: 100,
+      });
+
+      assert.strictEqual(result.kind, "success");
+      assert.deepStrictEqual(seenBody.reasoning, { effort: "high" });
+      assert.strictEqual("temperature" in seenBody, false);
+    });
+
+    it("drops unsupported reasoning.effort values for gpt-5.4-pro", async () => {
+      let seenBody;
+      process.env.OPENAI_API_KEY = "test-key";
+      globalThis.fetch = async (_url, init) => {
+        seenBody = JSON.parse(init.body);
+        return {
+          ok: true,
+          status: 200,
+          text: async () => JSON.stringify({ output_text: "ok" }),
+        };
+      };
+
+      const result = await runOpenAI("hello", {
+        model: "gpt-5.4-pro",
+        reasoning_effort: "none",
+        max_output_tokens: 100,
+      });
+
+      assert.strictEqual(result.kind, "success");
+      assert.strictEqual("reasoning" in seenBody, false);
+    });
+
+    it("keeps temperature for gpt-5.4 when reasoning.effort is none", async () => {
+      let seenBody;
+      process.env.OPENAI_API_KEY = "test-key";
+      globalThis.fetch = async (_url, init) => {
+        seenBody = JSON.parse(init.body);
+        return {
+          ok: true,
+          status: 200,
+          text: async () => JSON.stringify({ output_text: "ok" }),
+        };
+      };
+
+      const result = await runOpenAI("hello", {
+        model: "gpt-5.4",
+        reasoning_effort: "none",
+        temperature: 0.2,
+        max_output_tokens: 100,
+      });
+
+      assert.strictEqual(result.kind, "success");
+      assert.deepStrictEqual(seenBody.reasoning, { effort: "none" });
+      assert.strictEqual(seenBody.temperature, 0.2);
     });
   });
 });

@@ -10,19 +10,19 @@ app:
 providers:
   openai:
     enabled: true
-    model: ["gpt-5-nano", "gpt-4.1-nano"]
+    model: ["gpt-5-mini", "gpt-5-nano"]
     temperature: 0.2
     max_output_tokens: 800
 
   claude:
     enabled: true
-    model: ["claude-haiku-4-5-20251001", "claude-3-5-haiku-20241022"]
+    model: ["claude-haiku-4-5-20251001", "claude-sonnet-4-6"]
     temperature: 0.2
     max_output_tokens: 800
 
   gemini:
     enabled: true
-    model: ["gemini-2.0-flash", "gemini-1.5-flash-latest"]
+    model: ["gemini-3.1-flash-lite-preview", "gemini-3-flash-preview"]
     temperature: 0.2
     max_output_tokens: 800
 
